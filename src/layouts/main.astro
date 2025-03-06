@@ -9,8 +9,12 @@ const { content } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{content.title}</title>
+		<script src="/glitchBackground.js" defer></script>
 	</head>
 	<body>
-		<slot />
+		<canvas id="background-canvas"></canvas>
+		<main>
+			<slot />
+		</main>
 	</body>
 </html>
