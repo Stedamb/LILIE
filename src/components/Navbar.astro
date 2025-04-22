@@ -1,0 +1,266 @@
+---
+// Navbar.astro
+---
+
+<nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/30 transition-all duration-300 hover:bg-black/40 py-1">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center justify-center h-14">
+      <!-- Desktop Menu -->
+      <div class="hidden md:block">
+        <div class="flex items-center space-x-8">
+          <a href="/" class="nav-link group">
+            <span class="nav-text" data-text="Home">Home</span>
+          </a>
+          <a href="/events" class="nav-link group">
+            <span class="nav-text" data-text="Events">Events</span>
+          </a>
+          <a href="/artists" class="nav-link group">
+            <span class="nav-text" data-text="Artists">Artists</span>
+          </a>
+          <a href="/contact" class="nav-link group">
+            <span class="nav-text" data-text="Contact">Contact</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <div class="md:hidden absolute right-6">
+        <button type="button" id="mobile-menu-button" class="text-white hover:text-white focus:outline-none">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-white/10 bg-black/30 backdrop-blur-md text-center">
+      <a href="/" class="mobile-nav-link">Home</a>
+      <a href="/events" class="mobile-nav-link">Events</a>
+      <a href="/artists" class="mobile-nav-link">Artists</a>
+      <a href="/contact" class="mobile-nav-link">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Base styles for nav links */
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    overflow: hidden;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    font-weight: 300;
+  }
+  
+  .nav-text {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Removed bottom indicator */
+  
+  /* Light effect comes from above */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+    transition: all 0.4s ease;
+    z-index: 0;
+    opacity: 0;
+  }
+  
+  /* Hover effects for desktop nav */
+  .nav-link:hover, .nav-link.active {
+    color: rgba(255, 255, 255, 1);
+  }
+  
+  .nav-link:hover .nav-text, .nav-link.active .nav-text {
+    /* Removed transform effect */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 1);
+  }
+  
+  /* Add light from above effect */
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+  
+  .nav-link:hover::before, .nav-link.active::before {
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+    top: -15px;
+  }
+  
+  /* Removed hover effect for bottom indicator */
+  
+  /* Light from above hover effect */
+  .nav-link:hover::after, .nav-link.active::after {
+    width: 60px;
+    height: 30px;
+    opacity: 0.7;
+  }
+  
+  /* Glitch animation on hover */
+  @keyframes glitch {
+    0% {
+      clip-path: inset(80% 0 0 0);
+      transform: translate(-2px, -2px);
+    }
+    20% {
+      clip-path: inset(0 80% 0 0);
+      transform: translate(2px, 2px);
+    }
+    40% {
+      clip-path: inset(0 0 70% 0);
+      transform: translate(2px, -2px);
+    }
+    60% {
+      clip-path: inset(0 0 0 80%);
+      transform: translate(-2px, 2px);
+    }
+    80% {
+      clip-path: inset(10% 10% 10% 10%);
+      transform: translate(-2px, -2px);
+    }
+    100% {
+      clip-path: inset(80% 0 0 0);
+      transform: translate(2px, 2px);
+    }
+  }
+  
+  .nav-link:hover .nav-text::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    color: rgba(255, 255, 255, 0.8);
+    animation: glitch 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    animation-play-state: paused;
+  }
+  
+  .nav-link:hover .nav-text::before {
+    animation-play-state: running;
+  }
+  
+  /* Mobile nav styles */
+  .mobile-nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    width: fit-content;
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+  
+  .mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .mobile-nav-link:hover, .mobile-nav-link.active {
+    color: rgba(255, 255, 255, 1);
+    border-bottom-color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+  }
+  
+  .mobile-nav-link:hover::before {
+    left: 100%;
+  }
+</style>
+
+<script>
+  // Toggle mobile menu
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (mobileMenu && !mobileMenu.classList.contains('hidden') && 
+          !mobileMenu.contains(event.target) && 
+          !mobileMenuButton.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+    
+    // Highlight current page in navigation
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (href === '/' && currentPath === '')) {
+        link.classList.add('active');
+      }
+    });
+    
+    // Add hover effect sequence for nav links
+    const desktopNavLinks = document.querySelectorAll('.nav-link');
+    
+    desktopNavLinks.forEach(link => {
+      // Add subtle movement on hover
+      link.addEventListener('mouseover', () => {
+        // Add subtle random movement to text
+        const text = link.querySelector('.nav-text');
+        if (text) {
+          const randomX = (Math.random() * 2 - 1) * 0.5;
+          const randomY = (Math.random() * 2 - 1) * 0.5;
+          text.style.transform = `translate(${randomX}px, ${randomY}px)`;
+          
+          // Reset after animation
+          setTimeout(() => {
+            text.style.transform = '';
+          }, 150);
+        }
+      });
+    });
+  });
+</script>

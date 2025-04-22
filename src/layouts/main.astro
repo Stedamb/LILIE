@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
 const { content } = Astro.props;
 ---
 
@@ -11,10 +13,12 @@ const { content } = Astro.props;
 		<title>{content.title}</title>
 		<script src="/glitchBackground.js" defer></script>
 	</head>
-	<body>
+	<body class="flex flex-col min-h-screen">
 		<canvas id="background-canvas"></canvas>
-		<main>
+		<Navbar />
+		<main class="flex-grow pt-16">
 			<slot />
 		</main>
+		<Footer />
 	</body>
 </html>
