@@ -12,6 +12,10 @@ const { content } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{content.title}</title>
 		<script src="/glitchBackground.js" defer></script>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
 	</head>
 	<body class="flex flex-col min-h-screen">
 		<canvas id="background-canvas"></canvas>

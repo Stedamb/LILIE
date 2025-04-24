@@ -1,75 +1,75 @@
 ---
-import MainLayout from '../layouts/main.astro';
-import ImageGallery from '../components/EventCarousel';
+import MainLayout from "../layouts/main.astro";
+import BentoGrid from "../components/BentoGrid.astro";
 
 const pageContent = {
-	title: "LILIE | Underground Sound Movement"
+    title: "LILIE | Underground Sound Movement",
 };
 ---
 
 <MainLayout content={pageContent}>
-	<div class="max-w-4xl mx-auto px-4 py-16">
-		<!-- Logo and Hero Section -->
-		<div class="flex flex-col items-center mb-24">
-			<img src="/logotype.svg" alt="LILIE" class="w-3/5 md:w-80 mb-8" />
-			<img src="/logo.svg" alt="LILIE" class="w-2/5 md:w-80 mb-8" />
-		</div>
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <!-- Logo and Hero Section -->
+        <div class="flex flex-col items-center mb-24">
+            <img src="/logotype.svg" alt="LILIE" class="w-3/5 md:w-80 mb-8" />
+            <img src="/logo.svg" alt="LILIE" class="w-2/5 md:w-80 mb-8" />
+        </div>
 
-		<!-- Manifesto Section -->
-		<section class="mb-20">
-			<h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">MANIFESTO</h2>
-			
-			<div class="space-y-12">
-				<div class="border-l-4 border-purple-500 pl-6 py-2">
-					<h3 class="text-2xl font-bold mb-4 text-white">SONIC LIBERATION</h3>
-					<p class="text-lg text-white leading-relaxed">
-						We reject the commodification of sound. Music is not a product but a living, breathing entity that exists beyond market constraints. We create spaces where artists can explore the boundaries of sonic expression without commercial pressure.
-					</p>
-				</div>
+        <!-- Manifesto Section -->
+        <section class="mb-20">
+            <h2
+                class="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
+            >
+                MANIFESTO
+            </h2>
 
-				<div class="border-l-4 border-blue-500 pl-6 py-2">
-					<h3 class="text-2xl font-bold mb-4 text-white">COLLECTIVE CONSCIOUSNESS</h3>
-					<p class="text-lg text-white leading-relaxed">
-						The dancefloor is our temple, a sacred space where individual identities dissolve into collective experience. We cultivate environments where people from all walks of life can connect through rhythm, transcending social barriers and cultural divisions.
-					</p>
-				</div>
+            <div class="space-y-12">
+                <div class="border-l-4 border-slate-500 pl-6 py-2">
+                    <p class="text-lg text-white leading-relaxed">
+                        LILIE A.P.S. è un’associazione italiana senza scopo di
+                        lucro nata con l’obiettivo di promuovere la cultura
+                        musicale contemporanea e le arti visive. Organizza
+                        eventi, performance e workshop, offrendo uno spazio
+                        espressivo a giovani artisti emergenti, con un focus
+                        particolare sulla scena elettronica e sperimentale. La
+                        direzione artistica è guidata da una visione condivisa
+                        tra i soci fondatori, attenti a creare esperienze
+                        immersive e inclusive. LILIE si distingue per
+                        l’attenzione alla qualità sonora, alla cura del
+                        dettaglio visivo e all’atmosfera dei suoi eventi.
+                        L’associazione opera in sinergia con realtà locali e
+                        internazionali, costruendo una rete dinamica di
+                        collaborazioni. Oltre agli eventi, promuove progetti
+                        culturali e sociali, valorizzando il territorio in cui
+                        opera. La sede è in Toscana, con base operativa tra
+                        Firenze e Pistoia. Il team è composto da giovani
+                        professionisti attivi nel mondo della musica e
+                        dell’arte. LILIE è anche un punto di riferimento per chi
+                        cerca un’alternativa autentica nel panorama culturale
+                        indipendente.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-				<div class="border-l-4 border-pink-500 pl-6 py-2">
-					<h3 class="text-2xl font-bold mb-4 text-white">TECHNOLOGICAL SHAMANISM</h3>
-					<p class="text-lg text-white leading-relaxed">
-						We embrace technology as an extension of human creativity, not as its replacement. Our events and releases explore the intersection of ancient ritual and futuristic sound design, creating portals to altered states of consciousness through technological means.
-					</p>
-				</div>
+        <!-- Image Gallery Section -->
+        <section class="mb-20">
+            <h2
+                class="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
+            >
+                
+            </h2>
+            <BentoGrid />
+        </section>
 
-				<div class="border-l-4 border-green-500 pl-6 py-2">
-					<h3 class="text-2xl font-bold mb-4 text-white">SUSTAINABLE HEDONISM</h3>
-					<p class="text-lg text-white leading-relaxed">
-						We believe in pleasure with purpose. Our events minimize environmental impact while maximizing human connection. We reject disposable culture in favor of experiences that leave lasting impressions on hearts and minds, not landfills.
-					</p>
-				</div>
+        <!-- Call to Action -->
+        <section class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">
+                JOIN THE MOVEMENT
+            </h2>
+            <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
 
-				<div class="border-l-4 border-yellow-500 pl-6 py-2">
-					<h3 class="text-2xl font-bold mb-4 text-white">SONIC ACTIVISM</h3>
-					<p class="text-lg text-white leading-relaxed">
-						Music is inherently political. We use our platform to amplify marginalized voices and support causes that align with our values of equality, justice, and freedom. Every beat is a statement; every event is an act of resistance against the status quo.
-					</p>
-				</div>
-			</div>
-		</section>
-
-		<!-- Image Gallery Section -->
-		<section class="mb-20">
-			<h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">GALLERY</h2>
-			<ImageGallery client:load />
-		</section>
-
-		<!-- Call to Action -->
-		<section class="text-center">
-			<h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">JOIN THE MOVEMENT</h2>
-			<p class="text-xl text-white mb-8 max-w-2xl mx-auto">
-				We are not just a label or event series. We are a community of dreamers, dancers, and sonic revolutionaries. The future of sound is in our hands.
-			</p>
-
-		</section>
-	</div>
+            </p>
+        </section>
+    </div>
 </MainLayout>

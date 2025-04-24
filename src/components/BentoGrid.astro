@@ -1,0 +1,43 @@
+---
+// Define the images to display
+const images = [
+  {
+    id: 1,
+    src: "/gallery/image1.jpg",
+    alt: "Gallery Image 1",
+    class: "col-span-2 row-span-1"
+  },
+  {
+    id: 2,
+    src: "/gallery/image2.jpg",
+    alt: "Gallery Image 2",
+    class: "col-span-1 row-span-2"
+  },
+  {
+    id: 3,
+    src: "/gallery/image3.jpg",
+    alt: "Gallery Image 3",
+    class: "col-span-2 row-span-1"
+  },
+  {
+    id: 4,
+    src: "/gallery/image4.jpg",
+    alt: "Gallery Image 4",
+    class: "col-span-3 row-span-1"
+  }
+];
+---
+
+<div class="w-full">
+  <div class="grid grid-cols-3 gap-4">
+    {images.map(image => (
+      <div class={`overflow-hidden ${image.class}`}>
+        <img 
+          src={image.src} 
+          alt={image.alt} 
+          class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+    ))}
+  </div>
+</div>
